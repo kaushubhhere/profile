@@ -2448,6 +2448,9 @@ blockquote {
   overflow: hidden;
 }
 
+.description-mask a {
+  display: var(--coral);
+}
 .bg-coral {
   background-color: var(--coral);
   color: var(--nude);
