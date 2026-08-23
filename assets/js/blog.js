@@ -197,8 +197,8 @@ function updateSyncStatus(timestamp) {
   const remainingHours = Math.max(0, 48 - elapsedHours);
 
   syncBadge.innerHTML = `
-    <span class="badge bg-success-custom">
-      🟢 Synced ${elapsedHours === 0 ? 'just now' : elapsedHours + 'h ago'} | Next Auto-Refresh in ${remainingHours}h
+    <span class="sync-badge">
+      🟢 Synced ${elapsedHours === 0 ? 'just now' : elapsedHours + 'h ago'} • Auto-Refresh in ${remainingHours}h
     </span>
   `;
 }
@@ -222,19 +222,19 @@ function renderArticles() {
 
   container.innerHTML = filtered.map((item, index) => `
     <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="${(index % 3) * 100}">
-      <article class="news-card h-100 d-flex flex-column">
+      <article class="blog-card h-100 d-flex flex-column">
         <div class="card-img-wrapper">
           <img src="${item.thumbnail}" alt="${item.title}" class="card-img-top" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=600&q=80'">
-          <span class="category-tag tag-${item.category}">${getCategoryName(item.category)}</span>
+          <span class="category-tag">${getCategoryName(item.category)}</span>
         </div>
-        <div class="card-body d-flex flex-column p-4">
+        <div class="card-body d-flex flex-column">
           <div class="meta-info mb-2">
             <small class="text-muted">📅 ${formatDate(item.pubDate)} • ${item.source}</small>
           </div>
-          <h5 class="card-title text-light mb-3">${escapeHtml(item.title)}</h5>
-          <p class="card-text text-secondary flex-grow-1">${escapeHtml(truncate(item.description, 130))}</p>
-          <a href="${item.link}" target="_blank" rel="noopener noreferrer" class="read-more-btn mt-3">
-            Read Full Story <span class="arrow">→</span>
+          <h5 class="card-title mb-3">${escapeHtml(item.title)}</h5>
+          <p class="card-text flex-grow-1">${escapeHtml(truncate(item.description, 130))}</p>
+          <a href="${item.link}" target="_blank" rel="noopener noreferrer" class="read-link mt-3">
+            Read Full Story →
           </a>
         </div>
       </article>

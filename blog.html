@@ -3,7 +3,7 @@
    <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Kaushubh Kumar - Blog & Coding News</title>
+      <title>Kaushubh Kumar - Blog</title>
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
       <link rel="stylesheet" type="text/css" href="assets/css/style.css">
       <!-- AOS CSS -->
@@ -12,12 +12,6 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 
       <style type="text/css">
-         body.bg-nude-dark {
-            background-color: #0e0e0e;
-            color: #e0e0e0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-         }
-
          .loader {
             position: fixed;
             top: 0;
@@ -40,67 +34,74 @@
             100% { transform: translateY(-100%); }
          }
 
-         .blog-header {
-            padding-top: 40px;
-            padding-bottom: 30px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+         /* Editorial Nude Design Enhancements matching site theme */
+         .blog-meta-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.15);
          }
 
-         .bg-success-custom {
-            background-color: rgba(40, 167, 69, 0.2);
-            color: #2ecc71;
-            border: 1px solid rgba(46, 204, 113, 0.4);
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-weight: 500;
-            font-size: 0.85rem;
+         .sync-badge {
+            display: inline-block;
+            background-color: #2b2b2b;
+            color: #ffffff;
+            font-family: inherit;
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 14px;
+            letter-spacing: 0.5px;
          }
 
          .filter-bar {
             display: flex;
-            gap: 10px;
+            gap: 12px;
             flex-wrap: wrap;
-            margin-top: 25px;
-            margin-bottom: 35px;
+            margin-bottom: 40px;
          }
 
          .filter-btn {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            color: #b0b0b0;
-            padding: 8px 18px;
-            border-radius: 25px;
-            font-size: 0.9rem;
+            background-color: transparent;
+            border: 1px solid #2b2b2b;
+            color: #2b2b2b;
+            padding: 8px 22px;
+            border-radius: 30px;
+            font-family: Grandslang roman, sans-serif;
+            font-size: 18px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.25s ease-in-out;
          }
 
          .filter-btn:hover, .filter-btn.active {
-            background: #ffffff;
-            color: #000000;
-            border-color: #ffffff;
-            font-weight: 600;
-            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.15);
+            background-color: #2b2b2b;
+            color: #f7ede2;
+            border-color: #2b2b2b;
          }
 
-         .news-card {
-            background: #181818;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 12px;
+         .blog-card {
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 16px;
             overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
          }
 
-         .news-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            border-color: rgba(255, 255, 255, 0.25);
+         .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
          }
 
          .card-img-wrapper {
             position: relative;
-            height: 190px;
+            height: 210px;
             overflow: hidden;
+            background-color: #e5dada;
          }
 
          .card-img-top {
@@ -110,122 +111,143 @@
             transition: transform 0.4s ease;
          }
 
-         .news-card:hover .card-img-top {
-            transform: scale(1.05);
+         .blog-card:hover .card-img-top {
+            transform: scale(1.04);
          }
 
          .category-tag {
             position: absolute;
-            top: 12px;
-            left: 12px;
-            padding: 4px 12px;
-            border-radius: 15px;
-            font-size: 0.75rem;
+            top: 14px;
+            left: 14px;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 12px;
             font-weight: 600;
-            text-transform: uppercase;
             letter-spacing: 0.5px;
-            background: rgba(0, 0, 0, 0.75);
-            backdrop-filter: blur(4px);
-            color: #fff;
+            background: rgba(255, 255, 255, 0.95);
+            color: #2b2b2b;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
          }
 
-         .tag-web { border: 1px solid #3498db; color: #3498db; }
-         .tag-php { border: 1px solid #9b59b6; color: #9b59b6; }
-         .tag-js { border: 1px solid #f1c40f; color: #f1c40f; }
-         .tag-ai { border: 1px solid #e74c3c; color: #e74c3c; }
+         .card-body {
+            padding: 24px;
+         }
 
-         .read-more-btn {
+         .card-title {
+            font-family: Grandslang roman, serif;
+            font-size: 24px;
+            line-height: 1.25em;
+            color: #2b2b2b;
+            margin-bottom: 12px;
+         }
+
+         .card-text {
+            font-size: 15px;
+            line-height: 1.6em;
+            color: #555555;
+         }
+
+         .read-link {
+            font-family: Grandslang roman, sans-serif;
+            font-size: 18px;
+            color: #2b2b2b;
+            text-decoration: none;
             display: inline-flex;
             align-items: center;
-            color: #ffffff;
+            gap: 8px;
+            font-weight: 500;
+            transition: gap 0.2s ease, color 0.2s ease;
+         }
+
+         .read-link:hover {
+            color: #e76f51;
+            gap: 12px;
             text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: color 0.2s ease;
          }
 
-         .read-more-btn .arrow {
-            margin-left: 6px;
-            transition: transform 0.2s ease;
+         .refresh-action-btn {
+            background-color: #2b2b2b;
+            color: #ffffff;
+            border-radius: 30px;
+            padding: 8px 24px;
+            font-family: Grandslang roman, sans-serif;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.25s ease;
          }
 
-         .read-more-btn:hover {
-            color: #3498db;
-         }
-
-         .read-more-btn:hover .arrow {
-            transform: translateX(4px);
-         }
-
-         .refresh-btn {
-            background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: #fff;
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            transition: all 0.2s ease;
-         }
-
-         .refresh-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: #fff;
+         .refresh-action-btn:hover {
+            background-color: #e76f51;
+            color: #ffffff;
          }
       </style>
    </head>
-   <body class="bg-nude-dark">
+   <body class="bg-nude">
       <div class="loader"></div>
       <div class="container-fluid">
+         <!-- Navigation Left matching about.html -->
          <div class="nav-left" data-aos="fade-up">
-            <div class="nav-left-item"><a href="index.html" class="nav-left-link is-pink">HOME</a></div>
-            <div class="nav-line is-pink"></div>
+            <div class="nav-left-item"><a href="index.html" class="nav-left-link">HOME</a></div>
+            <div class="nav-line"></div>
             <div class="nav-left-item nav-copyright">
-               <div class="copyright" data-aos="fade-right">©/2025</div>
+               <div class="copyright">©/2025</div>
             </div>
          </div>
 
+         <!-- Main Content Wrapper matching about.html -->
          <div class="wrapper">
-            <div class="section-left section-long w-100">
-               <div class="content w-100 px-lg-5">
-                  <!-- Header -->
-                  <div class="blog-header mb-4" data-aos="fade-up">
-                     <div class="d-flex flex-wrap justify-content-between align-items-center mb-2">
-                        <h1 class="header header-large align-left mb-0" style="transform: none;">Coding & Tech News</h1>
-                        <button id="refresh-news-btn" class="refresh-btn mt-2 mt-sm-0">🔄 Refresh Feed</button>
-                     </div>
-                     <p class="text-secondary mb-3">Live auto-updating developer news powered by Google News RSS & PHP/Web Tech feeds. Scheduled refresh every 2 days.</p>
-                     
-                     <div id="sync-status" class="d-inline-block">
-                        <span class="badge bg-secondary">Initializing News Feed...</span>
-                     </div>
+            <div class="section-left section-long">
+               <div class="content">
+                  
+                  <!-- Page Header -->
+                  <div class="header-mask" data-aos="fade-up">
+                     <h1 class="header header-large align-left" style="transform: translate3d(0px, -2vh, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;">Blog</h1>
                   </div>
 
-                  <!-- Category Filters -->
-                  <div class="filter-bar" data-aos="fade-up" data-aos-delay="100">
+                  <p class="description-static description-long" data-aos="fade-up">
+                     <span class="quote">Insights, tutorials, and latest coding trends in Web Development & Software Engineering.<br></span><br>
+                     Automated live updates powered by Google News RSS feeds, refreshing every 2 days to bring you fresh tech news.
+                  </p>
+
+                  <!-- Control & Sync Bar -->
+                  <div class="blog-meta-bar" data-aos="fade-up">
+                     <div id="sync-status">
+                        <span class="sync-badge">🔄 Initializing Feed...</span>
+                     </div>
+                     <button id="refresh-news-btn" class="refresh-action-btn">Refresh Feed ↻</button>
+                  </div>
+
+                  <!-- Topic Category Filters -->
+                  <div class="filter-bar" data-aos="fade-up">
                      <button class="filter-btn active" data-category="all">All Topics</button>
                      <button class="filter-btn" data-category="web">Web Development</button>
                      <button class="filter-btn" data-category="php">PHP & Backend</button>
-                     <button class="filter-btn" data-category="js">JavaScript & APIs</button>
+                     <button class="filter-btn" data-category="js">JavaScript</button>
                      <button class="filter-btn" data-category="ai">AI & Tools</button>
                   </div>
 
-                  <!-- News Grid Container -->
+                  <!-- News Cards Grid -->
                   <div id="news-grid" class="row">
-                     <!-- Dynamic cards injected via blog.js -->
                      <div class="col-12 text-center py-5">
-                        <div class="spinner-border text-light" role="status">
-                           <span class="visually-hidden">Loading news...</span>
+                        <div class="spinner-border text-dark" role="status">
+                           <span class="visually-hidden">Loading...</span>
                         </div>
-                        <p class="text-secondary mt-3">Fetching latest coding articles...</p>
+                        <p class="mt-3 text-muted">Fetching latest tech articles...</p>
                      </div>
                   </div>
 
+               </div>
+
+               <!-- Bottom Contact CTA matching about.html -->
+               <div class="content mt-5" data-aos="fade-up">
+                  <a href="contact.html" class="button w-button">Contact me</a>
                </div>
             </div>
          </div>
       </div>
 
-      <script>
+      <script type="text/javascript">
          AOS.init({
             duration: 1000,
             once: true,
