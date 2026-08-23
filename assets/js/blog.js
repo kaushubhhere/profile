@@ -1,6 +1,6 @@
 /**
- * Blog News Engine - Google News RSS & Auto-Updating Feed
- * Matching Native Site Design System
+ * Blog News Engine - Google News RSS Feed & Single Article Reader
+ * Matching Portfolio Theme (bg-nude-dark)
  * Developer: Kaushubh Kumar
  */
 
@@ -16,10 +16,8 @@ const FALLBACK_ARTICLES = [
     pubDate: '2026-08-20',
     description: 'Explore the latest advancements in full-stack web development, serverless architecture, micro-frontends, and performance optimization.',
     content: `
-      <p class="description-static description-long"><span class="quote">Modern web engineering is transforming rapidly with edge computing, AI co-pilots, and server-side optimizations.<br></span><br>
-      As user expectations for instant page loads and seamless mobile experiences grow, developers are adopting modern standards like native Web Components, WebAssembly, and optimized asset pipelines. Mastering these techniques empowers developers to build resilient, ultra-responsive web platforms.<br><br>
-      <span class="quote">“Building for performance,”</span><br> requires continuous learning, modular design, and prioritizing seamless user experience above all else.
-      </p>
+      Full-stack web development is undergoing a massive transformation with the evolution of AI-driven coding engines, edge computing, serverless databases, and ultra-fast frontend frameworks.<br><br>
+      As user expectations for instant page loads and seamless mobile experiences grow, developers are adopting modern web standards like native Web Components, WebAssembly, and optimized asset pipelines. Mastering these techniques empowers developers to build resilient, ultra-responsive web platforms.
     `,
     source: 'Tech Insights',
     category: 'web',
@@ -32,10 +30,8 @@ const FALLBACK_ARTICLES = [
     pubDate: '2026-08-18',
     description: 'PHP continues to power over 75% of the web. Learn how modern PHP performance improvements and frameworks are changing enterprise backend systems.',
     content: `
-      <p class="description-static description-long"><span class="quote">PHP powers a vast portion of the web, from custom APIs to enterprise CMS implementations.<br></span><br>
-      With recent version upgrades, PHP brings property hooks, asymmetric visibility, enhanced performance, and robust type safety. Developers leveraging modern frameworks like Laravel and WordPress custom architectures can deliver clean, maintainable, and high-performance server-side web applications.<br><br>
-      <span class="quote">“Modern PHP is fast, typed, and clean.”</span><br> Exploring asynchronous processing and optimized database queries ensures your backend applications scale effortlessly.
-      </p>
+      PHP powers a vast portion of the global web, from enterprise applications to custom CMS implementations.<br><br>
+      With recent version upgrades, PHP brings property hooks, asymmetric visibility, enhanced performance, and robust type safety. Developers leveraging modern frameworks like Laravel and WordPress custom architectures can deliver clean, maintainable, and high-performance server-side web applications.
     `,
     source: 'Backend Digest',
     category: 'php',
@@ -48,10 +44,8 @@ const FALLBACK_ARTICLES = [
     pubDate: '2026-08-16',
     description: 'Best practices for architecting scalable RESTful and GraphQL APIs using asynchronous JavaScript and modern containerized architecture.',
     content: `
-      <p class="description-static description-long"><span class="quote">Asynchronous JavaScript execution enables exceptional API throughput and scalability.<br></span><br>
-      By structuring code into decoupled microservices, implementing intelligent caching strategies, and optimizing JSON serialization, engineering teams can handle high concurrent user traffic cleanly.<br><br>
-      <span class="quote">“Scalability starts at architecture,”</span><br> ensuring non-blocking operations, clear error handling, and robust API contracts.
-      </p>
+      Asynchronous JavaScript execution and modern event loops enable rapid API throughput.<br><br>
+      By structuring code into decoupled microservices, implementing intelligent caching strategies, and optimizing JSON serialization, engineering teams can handle millions of concurrent user transactions cleanly.
     `,
     source: 'JS Weekly',
     category: 'js',
@@ -64,10 +58,8 @@ const FALLBACK_ARTICLES = [
     pubDate: '2026-08-14',
     description: 'How AI developer assistants are speeding up coding workflows, refactoring codebase, and improving software quality.',
     content: `
-      <p class="description-static description-long"><span class="quote">Artificial Intelligence tools are elevating developer productivity across code generation and testing.<br></span><br>
-      Rather than replacing engineers, AI serves as a powerful pair-programming co-pilot that accelerates complex technical tasks, refactoring, and test automation.<br><br>
-      <span class="quote">“AI as an accelerator,”</span><br> allows developers to focus on high-level problem solving, architecture, and delivering maximum value to users.
-      </p>
+      Artificial Intelligence tools are elevating developer productivity across code generation, automated testing, bug detection, and documentation.<br><br>
+      Rather than replacing engineers, AI serves as a powerful pair-programming co-pilot that accelerates complex technical tasks, refactoring, and test automation.
     `,
     source: 'AI Hub',
     category: 'ai',
@@ -173,10 +165,9 @@ async function fetchRSS() {
         pubDate: item.pubDate,
         description: desc.length > 0 ? desc : 'Latest updates in coding and web software development.',
         content: `
-          <p class="description-static description-long"><span class="quote">${desc || title}<br></span><br>
-          Software engineering and web development continue to evolve rapidly. Staying informed on industry practices, frameworks, and architecture patterns helps developers write cleaner code and build scalable digital solutions.<br><br>
-          <span class="quote">“Continuous improvement,”</span><br> is key to mastering web technology, building intuitive interfaces, and optimizing application performance for real-world impact.
-          </p>
+          Software engineering and web development continue to evolve rapidly with new frameworks, performance standards, and security practices.<br><br>
+          Staying informed on modern architecture patterns helps developers write cleaner code and build scalable digital solutions.<br><br>
+          Continuous learning and optimizing application performance are essential to building modern web applications.
         `,
         source: item.author || 'Google News',
         category: cat,
@@ -214,16 +205,16 @@ function renderArticlesList() {
     : allArticles.filter(a => a.category === currentCategory);
 
   if (filtered.length === 0) {
-    container.innerHTML = `<div class="nav-item"><p class="description">No articles in this category.</p></div>`;
+    container.innerHTML = `<div class="nav-item"><p class="description">No articles found in this category.</p></div>`;
     return;
   }
 
   container.innerHTML = filtered.map((item, idx) => `
-    <div style="opacity: 1; filter: blur(0px);" role="listitem" class="nav-item w-dyn-item mb-4" data-aos="fade-up" data-aos-delay="${(idx % 4) * 100}">
-       <a href="blog-details.html?id=${item.id}" class="nav-link is-pink" style="font-size: 3.5vw; line-height: 1.1em;">${escapeHtml(item.title)}</a>
+    <div style="opacity: 1; filter: blur(0px);" role="listitem" class="nav-item w-dyn-item mb-5" data-aos="fade-up" data-aos-delay="${(idx % 4) * 100}">
+       <a href="blog-details.html?id=${item.id}" class="nav-link is-pink" style="font-size: 3vw; line-height: 1.15em;">${escapeHtml(item.title)}</a>
        <div class="nav-sub d-flex justify-content-between align-items-center mt-2">
-          <div class="role">📅 ${formatDate(item.pubDate)} • ${getCategoryName(item.category)} • ${item.source}</div>
-          <a href="blog-details.html?id=${item.id}" class="role text-decoration-none" style="color: var(--coral);">Read Article →</a>
+          <div class="role" style="color: var(--offwhite);">📅 ${formatDate(item.pubDate)} • ${getCategoryName(item.category)} • ${escapeHtml(item.source)}</div>
+          <a href="blog-details.html?id=${item.id}" class="role text-decoration-none" style="color: var(--coral); font-weight: 600;">Read Article →</a>
        </div>
        <div class="nav-underline"></div>
     </div>
@@ -248,26 +239,34 @@ function initSingleArticle() {
   document.title = `${item.title} - Kaushubh Kumar Blog`;
 
   container.innerHTML = `
-    <div class="content" data-aos="fade-up">
-       <a href="blog.html" class="button w-button mb-4" style="padding: 10px 30px; font-size: 16px; display: inline-block;">← Back to Blog</a>
-       
-       <div class="header-mask" style="margin-bottom: 1.5vh;">
-          <h1 class="header header-large align-left" style="font-size: 4.5vw; line-height: 1.1em;">${escapeHtml(item.title)}</h1>
+    <div class="content py-4" data-aos="fade-up">
+       <div class="mb-4">
+          <a href="blog.html" class="button w-button" style="background-color: var(--coral); color: #ffffff; padding: 10px 28px; font-size: 16px; text-decoration: none; display: inline-block;">← Back to Blog</a>
+       </div>
+
+       <div class="header-mask" style="margin-bottom: 2vh;">
+          <h1 class="header header-large align-left" style="font-size: 3.5vw; line-height: 1.15em; color: var(--offwhite);">${escapeHtml(item.title)}</h1>
        </div>
        
        <div class="mb-4">
-          <span class="role" style="font-size: 16px; color: var(--coral);">📅 ${formatDate(item.pubDate)} • ${getCategoryName(item.category)} • ${escapeHtml(item.source)}</span>
+          <span class="role" style="font-size: 16px; color: var(--coral); font-weight: 600;">📅 ${formatDate(item.pubDate)} • ${getCategoryName(item.category)} • ${escapeHtml(item.source)}</span>
        </div>
 
-       <div class="mb-5 overflow-hidden" style="border-radius: 12px; max-height: 400px;">
-          <img src="${item.thumbnail}" alt="${item.title}" class="w-100 h-100 object-fit-cover" style="object-fit: cover;">
+       ${item.thumbnail ? `
+       <div class="mb-4" style="border-radius: 12px; max-height: 380px; overflow: hidden; border: 1px solid rgba(255,255,255,0.15);">
+          <img src="${item.thumbnail}" alt="${escapeHtml(item.title)}" style="width: 100%; height: 380px; object-fit: cover;">
+       </div>` : ''}
+
+       <div class="description-mask my-4">
+          <p class="description" style="color: var(--offwhite); font-size: 20px; line-height: 1.7em;">
+             <span class="quote" style="color: var(--pink); font-size: 22px;">"${escapeHtml(item.description)}"<br></span><br>
+             ${item.content || ''}
+          </p>
        </div>
 
-       ${item.content || `<p class="description-static description-long"><span class="quote">${escapeHtml(item.description)}</span></p>`}
-
-       <div class="pt-4 mt-5 border-top border-secondary d-flex justify-content-between align-items-center flex-wrap gap-3">
-          <a href="blog.html" class="button w-button">← Back to Articles</a>
-          <a href="${item.link}" target="_blank" rel="noopener" class="role" style="font-size: 16px; color: var(--offwhite);">View Original Source ↗</a>
+       <div class="pt-4 mt-5 border-top border-secondary d-flex justify-content-between align-items-center flex-wrap gap-3 mb-5">
+          <a href="blog.html" class="button w-button" style="background-color: var(--coral); color: #ffffff; text-decoration: none;">← Back to Articles</a>
+          <a href="${item.link}" target="_blank" rel="noopener" class="role" style="font-size: 16px; color: var(--offwhite); text-decoration: underline;">View Original External Source ↗</a>
        </div>
     </div>
   `;
